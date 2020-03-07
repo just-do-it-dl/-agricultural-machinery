@@ -2,7 +2,7 @@ package com.jstdoit.agriculturalmachinery.entity;
 
 import java.util.Date;
 
-public class applyInfoEntity {
+public class ApplyInfoEntity {
     private Integer id;
 
     private Integer deviceInfoId;
