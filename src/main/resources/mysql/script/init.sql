@@ -53,7 +53,7 @@ CREATE TABLE apply_info (
   apply_type INT(1) DEFAULT 0 DEFAULT '申请类型，1-正常申请、2-延期申请',
   relate_id INT(64) DEFAULT 0 DEFAULT '关联id，正常申请为0，延期申请为对应id',
   delay_date DATETIME DEFAULT '1970-01-01 00:00:00' COMMENT '延期时间',
-  delay_times INT(1) COMMENT 0 COMMENT '延期次数',
+  delay_times INT(1) DEFAULT 0 COMMENT '延期次数',
   created_at DATETIME DEFAULT '1970-01-01 00:00:00' COMMENT '创建时间',
   updated_at DATETIME DEFAULT '1970-01-01 00:00:00' COMMENT '更新时间',
   is_deleted TINYINT(1) DEFAULT 0 COMMENT '是否有效，1-有效、2-无效'
