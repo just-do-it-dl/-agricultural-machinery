@@ -37,7 +37,11 @@ public enum CodeEnum {
     DATE_FOMMATE_ERROR(1401, "日期格式错误"),
 
     /** 业务相关 */
-    NO_SUITABLE_REPAIRER_ERROR(1500, "暂无空闲维修员，请稍后重试");
+    NO_SUITABLE_REPAIRER_ERROR(1500, "暂无空闲维修员，请稍后重试"),
+
+    /** 设备相关 */
+    DEVICE_USAGE(1600, "设备非空闲"),
+    DEVICE_REPAIR(1601, "设备维修中");
 
     private Integer code;
     private String msg;

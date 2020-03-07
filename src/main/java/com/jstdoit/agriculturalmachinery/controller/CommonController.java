@@ -17,13 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
  *  @date 2020-03-07
  */
 @RestController
-@RequestMapping("/api/v1.0/common")
 public class CommonController {
 
     @Autowired
     private CommonService commonService;
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public Result<UserEntity> login(@RequestBody LoginModel param) {
         return commonService.login(param);
     }

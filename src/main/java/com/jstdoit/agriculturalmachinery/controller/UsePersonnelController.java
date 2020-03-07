@@ -1,7 +1,10 @@
 package com.jstdoit.agriculturalmachinery.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.jstdoit.agriculturalmachinery.entity.ApplyInfoEntity;
+import com.jstdoit.agriculturalmachinery.model.Result;
+import com.jstdoit.agriculturalmachinery.service.UsePersonnelService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  *  设备使用人员模块
@@ -10,9 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
  *  @date 2020-03-07
  */
 @RestController
-@RequestMapping("/api/v1.0/use-personnel")
 public class UsePersonnelController {
 
+    @Autowired
+    private UsePersonnelService usePersonnelService;
 
+    @PostMapping("/applySubmit")
+    public Result applySubmit(@RequestBody ApplyInfoEntity param) {
+        return usePersonnelService.applySubmit(param);
+    }
 
 }

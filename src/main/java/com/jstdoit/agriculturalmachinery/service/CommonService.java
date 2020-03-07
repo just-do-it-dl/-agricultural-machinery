@@ -32,7 +32,10 @@ public class CommonService {
         if (Objects.isNull(user)) {
             return Result.getExceptionResult(CodeEnum.NULL_USER);
         }
-        return null;
+        if (!param.getPassword().equals(user.getPassword())) {
+            return Result.getExceptionResult(CodeEnum.PASSWORD_ERROR);
+        }
+        return Result.getSuccessResult(user);
     }
 
 }

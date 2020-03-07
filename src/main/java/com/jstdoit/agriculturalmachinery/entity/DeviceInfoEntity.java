@@ -21,7 +21,7 @@ public class DeviceInfoEntity {
 
     private Date updatedAt;
 
-    private Boolean isDeleted;
+    private Integer isDeleted;
 
     public Integer getId() {
         return id;
@@ -95,11 +95,11 @@ public class DeviceInfoEntity {
         this.updatedAt = updatedAt;
     }
 
-    public Boolean getIsDeleted() {
+    public Integer getIsDeleted() {
         return isDeleted;
     }
 
-    public void setIsDeleted(Boolean isDeleted) {
+    public void setIsDeleted(Integer isDeleted) {
         this.isDeleted = isDeleted;
     }
 }
