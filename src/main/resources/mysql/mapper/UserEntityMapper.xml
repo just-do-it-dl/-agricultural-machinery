@@ -138,4 +138,10 @@
       is_deleted = #{isDeleted,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectByAccount" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where account_no = #{accountNo,jdbcType=INTEGER}
+  </select>
 </mapper>

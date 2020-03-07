@@ -2,7 +2,7 @@ package com.jstdoit.agriculturalmachinery.entity;
 
 import java.util.Date;
 
-public class deviceMapperEntity {
+public class DeviceMapperEntity {
     private Integer id;
 
     private Integer deviceNo;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jstdoit.agriculturalmachinery.dao.repairInfoEntityMapper">
-  <resultMap id="BaseResultMap" type="com.jstdoit.agriculturalmachinery.entity.repairInfoEntity">
+<mapper namespace="com.jstdoit.agriculturalmachinery.dao.RepairInfoEntityMapper">
+  <resultMap id="BaseResultMap" type="com.jstdoit.agriculturalmachinery.entity.RepairInfoEntity">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="device_info_id" jdbcType="INTEGER" property="deviceInfoId" />
     <result column="repair_desc" jdbcType="VARCHAR" property="repairDesc" />
@@ -29,7 +29,7 @@
     delete from repair_info
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.jstdoit.agriculturalmachinery.entity.repairInfoEntity">
+  <insert id="insert" parameterType="com.jstdoit.agriculturalmachinery.entity.RepairInfoEntity">
     insert into repair_info (id, device_info_id, repair_desc, 
       repair_cause, repair_start_date, repair_end_date, 
       repair_acount_no, approval_acount_no, repair_status, 
@@ -41,7 +41,7 @@
       #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.jstdoit.agriculturalmachinery.entity.repairInfoEntity">
+  <insert id="insertSelective" parameterType="com.jstdoit.agriculturalmachinery.entity.RepairInfoEntity">
     insert into repair_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -120,7 +120,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jstdoit.agriculturalmachinery.entity.repairInfoEntity">
+  <update id="updateByPrimaryKeySelective" parameterType="com.jstdoit.agriculturalmachinery.entity.RepairInfoEntity">
     update repair_info
     <set>
       <if test="deviceInfoId != null">
@@ -159,7 +159,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.jstdoit.agriculturalmachinery.entity.repairInfoEntity">
+  <update id="updateByPrimaryKey" parameterType="com.jstdoit.agriculturalmachinery.entity.RepairInfoEntity">
     update repair_info
     set device_info_id = #{deviceInfoId,jdbcType=INTEGER},
       repair_desc = #{repairDesc,jdbcType=VARCHAR},

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jstdoit.agriculturalmachinery.dao.deviceInfoEntityMapper">
-  <resultMap id="BaseResultMap" type="com.jstdoit.agriculturalmachinery.entity.deviceInfoEntity">
+<mapper namespace="com.jstdoit.agriculturalmachinery.dao.DeviceInfoEntityMapper">
+  <resultMap id="BaseResultMap" type="com.jstdoit.agriculturalmachinery.entity.DeviceInfoEntity">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="device_mapper_id" jdbcType="INTEGER" property="deviceMapperId" />
     <result column="purchas_date" jdbcType="TIMESTAMP" property="purchasDate" />
@@ -27,7 +27,7 @@
     delete from device_info
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.jstdoit.agriculturalmachinery.entity.deviceInfoEntity">
+  <insert id="insert" parameterType="com.jstdoit.agriculturalmachinery.entity.DeviceInfoEntity">
     insert into device_info (id, device_mapper_id, purchas_date, 
       purchas_price, addr, usage_status, 
       repair_status, created_at, updated_at, 
@@ -37,7 +37,7 @@
       #{repairStatus,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, 
       #{isDeleted,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.jstdoit.agriculturalmachinery.entity.deviceInfoEntity">
+  <insert id="insertSelective" parameterType="com.jstdoit.agriculturalmachinery.entity.DeviceInfoEntity">
     insert into device_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -104,7 +104,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jstdoit.agriculturalmachinery.entity.deviceInfoEntity">
+  <update id="updateByPrimaryKeySelective" parameterType="com.jstdoit.agriculturalmachinery.entity.DeviceInfoEntity">
     update device_info
     <set>
       <if test="deviceMapperId != null">
@@ -137,7 +137,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.jstdoit.agriculturalmachinery.entity.deviceInfoEntity">
+  <update id="updateByPrimaryKey" parameterType="com.jstdoit.agriculturalmachinery.entity.DeviceInfoEntity">
     update device_info
     set device_mapper_id = #{deviceMapperId,jdbcType=INTEGER},
       purchas_date = #{purchasDate,jdbcType=TIMESTAMP},

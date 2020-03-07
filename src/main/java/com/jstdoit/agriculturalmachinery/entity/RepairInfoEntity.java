@@ -2,7 +2,7 @@ package com.jstdoit.agriculturalmachinery.entity;
 
 import java.util.Date;
 
-public class repairInfoEntity {
+public class RepairInfoEntity {
     private Integer id;
 
     private Integer deviceInfoId;
