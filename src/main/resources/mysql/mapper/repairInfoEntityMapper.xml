@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jstdoit.agriculturalmachinery.dao.repairInfoEntityMapper">
+  <resultMap id="BaseResultMap" type="com.jstdoit.agriculturalmachinery.entity.repairInfoEntity">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="device_info_id" jdbcType="INTEGER" property="deviceInfoId" />
+    <result column="repair_desc" jdbcType="VARCHAR" property="repairDesc" />
+    <result column="repair_cause" jdbcType="VARCHAR" property="repairCause" />
+    <result column="repair_start_date" jdbcType="TIMESTAMP" property="repairStartDate" />
+    <result column="repair_end_date" jdbcType="TIMESTAMP" property="repairEndDate" />
+    <result column="repair_acount_no" jdbcType="INTEGER" property="repairAcountNo" />
+    <result column="approval_acount_no" jdbcType="INTEGER" property="approvalAcountNo" />
+    <result column="repair_status" jdbcType="INTEGER" property="repairStatus" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, device_info_id, repair_desc, repair_cause, repair_start_date, repair_end_date, 
+    repair_acount_no, approval_acount_no, repair_status, created_at, updated_at, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from repair_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from repair_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jstdoit.agriculturalmachinery.entity.repairInfoEntity">
+    insert into repair_info (id, device_info_id, repair_desc, 
+      repair_cause, repair_start_date, repair_end_date, 
+      repair_acount_no, approval_acount_no, repair_status, 
+      created_at, updated_at, is_deleted
+      )
+    values (#{id,jdbcType=INTEGER}, #{deviceInfoId,jdbcType=INTEGER}, #{repairDesc,jdbcType=VARCHAR}, 
+      #{repairCause,jdbcType=VARCHAR}, #{repairStartDate,jdbcType=TIMESTAMP}, #{repairEndDate,jdbcType=TIMESTAMP}, 
+      #{repairAcountNo,jdbcType=INTEGER}, #{approvalAcountNo,jdbcType=INTEGER}, #{repairStatus,jdbcType=INTEGER}, 
+      #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jstdoit.agriculturalmachinery.entity.repairInfoEntity">
+    insert into repair_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="deviceInfoId != null">
+        device_info_id,
+      </if>
+      <if test="repairDesc != null">
+        repair_desc,
+      </if>
+      <if test="repairCause != null">
+        repair_cause,
+      </if>
+      <if test="repairStartDate != null">
+        repair_start_date,
+      </if>
+      <if test="repairEndDate != null">
+        repair_end_date,
+      </if>
+      <if test="repairAcountNo != null">
+        repair_acount_no,
+      </if>
+      <if test="approvalAcountNo != null">
+        approval_acount_no,
+      </if>
+      <if test="repairStatus != null">
+        repair_status,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="deviceInfoId != null">
+        #{deviceInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="repairDesc != null">
+        #{repairDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="repairCause != null">
+        #{repairCause,jdbcType=VARCHAR},
+      </if>
+      <if test="repairStartDate != null">
+        #{repairStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repairEndDate != null">
+        #{repairEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repairAcountNo != null">
+        #{repairAcountNo,jdbcType=INTEGER},
+      </if>
+      <if test="approvalAcountNo != null">
+        #{approvalAcountNo,jdbcType=INTEGER},
+      </if>
+      <if test="repairStatus != null">
+        #{repairStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jstdoit.agriculturalmachinery.entity.repairInfoEntity">
+    update repair_info
+    <set>
+      <if test="deviceInfoId != null">
+        device_info_id = #{deviceInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="repairDesc != null">
+        repair_desc = #{repairDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="repairCause != null">
+        repair_cause = #{repairCause,jdbcType=VARCHAR},
+      </if>
+      <if test="repairStartDate != null">
+        repair_start_date = #{repairStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repairEndDate != null">
+        repair_end_date = #{repairEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repairAcountNo != null">
+        repair_acount_no = #{repairAcountNo,jdbcType=INTEGER},
+      </if>
+      <if test="approvalAcountNo != null">
+        approval_acount_no = #{approvalAcountNo,jdbcType=INTEGER},
+      </if>
+      <if test="repairStatus != null">
+        repair_status = #{repairStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jstdoit.agriculturalmachinery.entity.repairInfoEntity">
+    update repair_info
+    set device_info_id = #{deviceInfoId,jdbcType=INTEGER},
+      repair_desc = #{repairDesc,jdbcType=VARCHAR},
+      repair_cause = #{repairCause,jdbcType=VARCHAR},
+      repair_start_date = #{repairStartDate,jdbcType=TIMESTAMP},
+      repair_end_date = #{repairEndDate,jdbcType=TIMESTAMP},
+      repair_acount_no = #{repairAcountNo,jdbcType=INTEGER},
+      approval_acount_no = #{approvalAcountNo,jdbcType=INTEGER},
+      repair_status = #{repairStatus,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
