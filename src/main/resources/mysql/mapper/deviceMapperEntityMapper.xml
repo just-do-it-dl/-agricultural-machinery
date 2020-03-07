@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jstdoit.agriculturalmachinery.dao.deviceMapperEntityMapper">
+  <resultMap id="BaseResultMap" type="com.jstdoit.agriculturalmachinery.entity.deviceMapperEntity">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="device_no" jdbcType="INTEGER" property="deviceNo" />
+    <result column="device_name" jdbcType="VARCHAR" property="deviceName" />
+    <result column="device_param" jdbcType="VARCHAR" property="deviceParam" />
+    <result column="device_type" jdbcType="INTEGER" property="deviceType" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, device_no, device_name, device_param, device_type, created_at, updated_at, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from device_mapper
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from device_mapper
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jstdoit.agriculturalmachinery.entity.deviceMapperEntity">
+    insert into device_mapper (id, device_no, device_name, 
+      device_param, device_type, created_at, 
+      updated_at, is_deleted)
+    values (#{id,jdbcType=INTEGER}, #{deviceNo,jdbcType=INTEGER}, #{deviceName,jdbcType=VARCHAR}, 
+      #{deviceParam,jdbcType=VARCHAR}, #{deviceType,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jstdoit.agriculturalmachinery.entity.deviceMapperEntity">
+    insert into device_mapper
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="deviceNo != null">
+        device_no,
+      </if>
+      <if test="deviceName != null">
+        device_name,
+      </if>
+      <if test="deviceParam != null">
+        device_param,
+      </if>
+      <if test="deviceType != null">
+        device_type,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="deviceNo != null">
+        #{deviceNo,jdbcType=INTEGER},
+      </if>
+      <if test="deviceName != null">
+        #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceParam != null">
+        #{deviceParam,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null">
+        #{deviceType,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jstdoit.agriculturalmachinery.entity.deviceMapperEntity">
+    update device_mapper
+    <set>
+      <if test="deviceNo != null">
+        device_no = #{deviceNo,jdbcType=INTEGER},
+      </if>
+      <if test="deviceName != null">
+        device_name = #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceParam != null">
+        device_param = #{deviceParam,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null">
+        device_type = #{deviceType,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jstdoit.agriculturalmachinery.entity.deviceMapperEntity">
+    update device_mapper
+    set device_no = #{deviceNo,jdbcType=INTEGER},
+      device_name = #{deviceName,jdbcType=VARCHAR},
+      device_param = #{deviceParam,jdbcType=VARCHAR},
+      device_type = #{deviceType,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

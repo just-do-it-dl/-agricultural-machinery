@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jstdoit.agriculturalmachinery.dao.applyInfoEntityMapper">
+  <resultMap id="BaseResultMap" type="com.jstdoit.agriculturalmachinery.entity.applyInfoEntity">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="device_info_id" jdbcType="INTEGER" property="deviceInfoId" />
+    <result column="apply_start_date" jdbcType="TIMESTAMP" property="applyStartDate" />
+    <result column="apply_end_date" jdbcType="TIMESTAMP" property="applyEndDate" />
+    <result column="apply_lenth" jdbcType="INTEGER" property="applyLenth" />
+    <result column="apply_acount_no" jdbcType="INTEGER" property="applyAcountNo" />
+    <result column="apply_status" jdbcType="INTEGER" property="applyStatus" />
+    <result column="approval_acount_no" jdbcType="INTEGER" property="approvalAcountNo" />
+    <result column="approval_date" jdbcType="TIMESTAMP" property="approvalDate" />
+    <result column="apply_type" jdbcType="INTEGER" property="applyType" />
+    <result column="relate_id" jdbcType="INTEGER" property="relateId" />
+    <result column="delay_date" jdbcType="TIMESTAMP" property="delayDate" />
+    <result column="delay_times" jdbcType="INTEGER" property="delayTimes" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, device_info_id, apply_start_date, apply_end_date, apply_lenth, apply_acount_no, 
+    apply_status, approval_acount_no, approval_date, apply_type, relate_id, delay_date, 
+    delay_times, created_at, updated_at, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from apply_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from apply_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jstdoit.agriculturalmachinery.entity.applyInfoEntity">
+    insert into apply_info (id, device_info_id, apply_start_date, 
+      apply_end_date, apply_lenth, apply_acount_no, 
+      apply_status, approval_acount_no, approval_date, 
+      apply_type, relate_id, delay_date, 
+      delay_times, created_at, updated_at, 
+      is_deleted)
+    values (#{id,jdbcType=INTEGER}, #{deviceInfoId,jdbcType=INTEGER}, #{applyStartDate,jdbcType=TIMESTAMP}, 
+      #{applyEndDate,jdbcType=TIMESTAMP}, #{applyLenth,jdbcType=INTEGER}, #{applyAcountNo,jdbcType=INTEGER}, 
+      #{applyStatus,jdbcType=INTEGER}, #{approvalAcountNo,jdbcType=INTEGER}, #{approvalDate,jdbcType=TIMESTAMP}, 
+      #{applyType,jdbcType=INTEGER}, #{relateId,jdbcType=INTEGER}, #{delayDate,jdbcType=TIMESTAMP}, 
+      #{delayTimes,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{isDeleted,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jstdoit.agriculturalmachinery.entity.applyInfoEntity">
+    insert into apply_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="deviceInfoId != null">
+        device_info_id,
+      </if>
+      <if test="applyStartDate != null">
+        apply_start_date,
+      </if>
+      <if test="applyEndDate != null">
+        apply_end_date,
+      </if>
+      <if test="applyLenth != null">
+        apply_lenth,
+      </if>
+      <if test="applyAcountNo != null">
+        apply_acount_no,
+      </if>
+      <if test="applyStatus != null">
+        apply_status,
+      </if>
+      <if test="approvalAcountNo != null">
+        approval_acount_no,
+      </if>
+      <if test="approvalDate != null">
+        approval_date,
+      </if>
+      <if test="applyType != null">
+        apply_type,
+      </if>
+      <if test="relateId != null">
+        relate_id,
+      </if>
+      <if test="delayDate != null">
+        delay_date,
+      </if>
+      <if test="delayTimes != null">
+        delay_times,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="deviceInfoId != null">
+        #{deviceInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="applyStartDate != null">
+        #{applyStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyEndDate != null">
+        #{applyEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyLenth != null">
+        #{applyLenth,jdbcType=INTEGER},
+      </if>
+      <if test="applyAcountNo != null">
+        #{applyAcountNo,jdbcType=INTEGER},
+      </if>
+      <if test="applyStatus != null">
+        #{applyStatus,jdbcType=INTEGER},
+      </if>
+      <if test="approvalAcountNo != null">
+        #{approvalAcountNo,jdbcType=INTEGER},
+      </if>
+      <if test="approvalDate != null">
+        #{approvalDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyType != null">
+        #{applyType,jdbcType=INTEGER},
+      </if>
+      <if test="relateId != null">
+        #{relateId,jdbcType=INTEGER},
+      </if>
+      <if test="delayDate != null">
+        #{delayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delayTimes != null">
+        #{delayTimes,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jstdoit.agriculturalmachinery.entity.applyInfoEntity">
+    update apply_info
+    <set>
+      <if test="deviceInfoId != null">
+        device_info_id = #{deviceInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="applyStartDate != null">
+        apply_start_date = #{applyStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyEndDate != null">
+        apply_end_date = #{applyEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyLenth != null">
+        apply_lenth = #{applyLenth,jdbcType=INTEGER},
+      </if>
+      <if test="applyAcountNo != null">
+        apply_acount_no = #{applyAcountNo,jdbcType=INTEGER},
+      </if>
+      <if test="applyStatus != null">
+        apply_status = #{applyStatus,jdbcType=INTEGER},
+      </if>
+      <if test="approvalAcountNo != null">
+        approval_acount_no = #{approvalAcountNo,jdbcType=INTEGER},
+      </if>
+      <if test="approvalDate != null">
+        approval_date = #{approvalDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyType != null">
+        apply_type = #{applyType,jdbcType=INTEGER},
+      </if>
+      <if test="relateId != null">
+        relate_id = #{relateId,jdbcType=INTEGER},
+      </if>
+      <if test="delayDate != null">
+        delay_date = #{delayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delayTimes != null">
+        delay_times = #{delayTimes,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jstdoit.agriculturalmachinery.entity.applyInfoEntity">
+    update apply_info
+    set device_info_id = #{deviceInfoId,jdbcType=INTEGER},
+      apply_start_date = #{applyStartDate,jdbcType=TIMESTAMP},
+      apply_end_date = #{applyEndDate,jdbcType=TIMESTAMP},
+      apply_lenth = #{applyLenth,jdbcType=INTEGER},
+      apply_acount_no = #{applyAcountNo,jdbcType=INTEGER},
+      apply_status = #{applyStatus,jdbcType=INTEGER},
+      approval_acount_no = #{approvalAcountNo,jdbcType=INTEGER},
+      approval_date = #{approvalDate,jdbcType=TIMESTAMP},
+      apply_type = #{applyType,jdbcType=INTEGER},
+      relate_id = #{relateId,jdbcType=INTEGER},
+      delay_date = #{delayDate,jdbcType=TIMESTAMP},
+      delay_times = #{delayTimes,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
