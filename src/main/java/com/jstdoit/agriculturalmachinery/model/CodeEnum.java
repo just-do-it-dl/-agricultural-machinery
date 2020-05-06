@@ -37,7 +37,15 @@ public enum CodeEnum {
     DATE_FOMMATE_ERROR(1401, "日期格式错误"),
 
     /** 业务相关 */
-    NO_SUITABLE_REPAIRER_ERROR(1500, "暂无空闲维修员，请稍后重试");
+    NO_SUITABLE_REPAIRER_ERROR(1500, "暂无空闲维修员，请稍后重试"),
+    NO_LIMIT_ADD(1501,"只有管理员有此权限"),
+    CHECK_INFO(1502,"延期使用设备超过3次，暂停使用此功能"),
+    DELETE_USE(1503,"设备正在使用中，无法删除"),
+    DELETE_REPAIRE(1504,"设备正在维修中，无法删除"),
+    REPEAT_NAME(1506,"该用户名称已被注册"),
+    REPEAT_ACOUNT(1507,"该账号已被注册"),
+    NOT_EXIST(1508,"账号不存在"),
+    PASSWORD_WRONG(1509,"密码错误");
 
     private Integer code;
     private String msg;

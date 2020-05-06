@@ -11,11 +11,11 @@ public class RepairInfoEntity {
 
     private String repairCause;
 
-    private Date repairStartDate;
+    private String repairStartDate;
 
-    private Date repairEndDate;
+    private String repairEndDate;
 
-    private Integer repairAcountNo;
+    private String name;
 
     private Integer approvalAcountNo;
 
@@ -25,7 +25,7 @@ public class RepairInfoEntity {
 
     private Date updatedAt;
 
-    private Boolean isDeleted;
+    private Integer isDeleted;
 
     public Integer getId() {
         return id;
@@ -59,28 +59,28 @@ public class RepairInfoEntity {
         this.repairCause = repairCause;
     }
 
-    public Date getRepairStartDate() {
+    public String getRepairStartDate() {
         return repairStartDate;
     }
 
-    public void setRepairStartDate(Date repairStartDate) {
+    public void setRepairStartDate(String repairStartDate) {
         this.repairStartDate = repairStartDate;
     }
 
-    public Date getRepairEndDate() {
+    public String getRepairEndDate() {
         return repairEndDate;
     }
 
-    public void setRepairEndDate(Date repairEndDate) {
+    public void setRepairEndDate(String repairEndDate) {
         this.repairEndDate = repairEndDate;
     }
 
-    public Integer getRepairAcountNo() {
-        return repairAcountNo;
+    public String getName() {
+        return name;
     }
 
-    public void setRepairAcountNo(Integer repairAcountNo) {
-        this.repairAcountNo = repairAcountNo;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getApprovalAcountNo() {
@@ -115,11 +115,11 @@ public class RepairInfoEntity {
         this.updatedAt = updatedAt;
     }
 
-    public Boolean getIsDeleted() {
+    public Integer getIsDeleted() {
         return isDeleted;
     }
 
-    public void setIsDeleted(Boolean isDeleted) {
+    public void setIsDeleted(Integer isDeleted) {
         this.isDeleted = isDeleted;
     }
 }

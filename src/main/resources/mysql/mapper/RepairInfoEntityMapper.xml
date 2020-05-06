@@ -8,7 +8,7 @@
     <result column="repair_cause" jdbcType="VARCHAR" property="repairCause" />
     <result column="repair_start_date" jdbcType="TIMESTAMP" property="repairStartDate" />
     <result column="repair_end_date" jdbcType="TIMESTAMP" property="repairEndDate" />
-    <result column="repair_acount_no" jdbcType="INTEGER" property="repairAcountNo" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="approval_acount_no" jdbcType="INTEGER" property="approvalAcountNo" />
     <result column="repair_status" jdbcType="INTEGER" property="repairStatus" />
     <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
@@ -17,7 +17,7 @@
   </resultMap>
   <sql id="Base_Column_List">
     id, device_info_id, repair_desc, repair_cause, repair_start_date, repair_end_date, 
-    repair_acount_no, approval_acount_no, repair_status, created_at, updated_at, is_deleted
+    name, approval_acount_no, repair_status, created_at, updated_at, is_deleted
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -32,12 +32,12 @@
   <insert id="insert" parameterType="com.jstdoit.agriculturalmachinery.entity.RepairInfoEntity">
     insert into repair_info (id, device_info_id, repair_desc, 
       repair_cause, repair_start_date, repair_end_date, 
-      repair_acount_no, approval_acount_no, repair_status, 
+      name, approval_acount_no, repair_status, 
       created_at, updated_at, is_deleted
       )
     values (#{id,jdbcType=INTEGER}, #{deviceInfoId,jdbcType=INTEGER}, #{repairDesc,jdbcType=VARCHAR}, 
       #{repairCause,jdbcType=VARCHAR}, #{repairStartDate,jdbcType=TIMESTAMP}, #{repairEndDate,jdbcType=TIMESTAMP}, 
-      #{repairAcountNo,jdbcType=INTEGER}, #{approvalAcountNo,jdbcType=INTEGER}, #{repairStatus,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{approvalAcountNo,jdbcType=INTEGER}, #{repairStatus,jdbcType=INTEGER}, 
       #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}
       )
   </insert>
@@ -62,8 +62,8 @@
       <if test="repairEndDate != null">
         repair_end_date,
       </if>
-      <if test="repairAcountNo != null">
-        repair_acount_no,
+      <if test="name != null">
+        name,
       </if>
       <if test="approvalAcountNo != null">
         approval_acount_no,
@@ -100,8 +100,8 @@
       <if test="repairEndDate != null">
         #{repairEndDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="repairAcountNo != null">
-        #{repairAcountNo,jdbcType=INTEGER},
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
       </if>
       <if test="approvalAcountNo != null">
         #{approvalAcountNo,jdbcType=INTEGER},
@@ -138,8 +138,8 @@
       <if test="repairEndDate != null">
         repair_end_date = #{repairEndDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="repairAcountNo != null">
-        repair_acount_no = #{repairAcountNo,jdbcType=INTEGER},
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="approvalAcountNo != null">
         approval_acount_no = #{approvalAcountNo,jdbcType=INTEGER},
@@ -166,7 +166,7 @@
       repair_cause = #{repairCause,jdbcType=VARCHAR},
       repair_start_date = #{repairStartDate,jdbcType=TIMESTAMP},
       repair_end_date = #{repairEndDate,jdbcType=TIMESTAMP},
-      repair_acount_no = #{repairAcountNo,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
       approval_acount_no = #{approvalAcountNo,jdbcType=INTEGER},
       repair_status = #{repairStatus,jdbcType=INTEGER},
       created_at = #{createdAt,jdbcType=TIMESTAMP},
@@ -174,4 +174,10 @@
       is_deleted = #{isDeleted,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+<select id="repairList" parameterType="com.jstdoit.agriculturalmachinery.entity.ApplyBean" resultType="com.jstdoit.agriculturalmachinery.entity.RepairInfoEntity">
+  select id as id,device_info_id as deviceInfoId,repair_desc as repairDesc,repair_cause as repairCause,repair_start_date as repairStartDate,repair_end_date  as repairEndDate,approval_acount_no as approvalAcountNo
+  from repair_info where is_deleted = 1 and name = #{name}
+</select>
+
 </mapper>

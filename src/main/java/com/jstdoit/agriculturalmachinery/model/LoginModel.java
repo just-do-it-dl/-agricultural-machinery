@@ -10,6 +10,6 @@ import lombok.Data;
  */
 @Data
 public class LoginModel {
-    private String accountNo;
-    private String password;
+    private String acountNo;
+    private String passWord;
 }

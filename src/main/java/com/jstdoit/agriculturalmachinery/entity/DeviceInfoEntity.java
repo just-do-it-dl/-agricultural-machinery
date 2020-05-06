@@ -3,6 +3,11 @@ package com.jstdoit.agriculturalmachinery.entity;
 import java.util.Date;
 
 public class DeviceInfoEntity {
+    private String name;
+    private String deviceName;
+    private String deviceType;
+
+    private String acountNo;
     private Integer id;
 
     private Integer deviceMapperId;
@@ -22,6 +27,10 @@ public class DeviceInfoEntity {
     private Date updatedAt;
 
     private Boolean isDeleted;
+
+    private Integer useTime;
+
+    private Integer repairTime;
 
     public Integer getId() {
         return id;
@@ -101,5 +110,61 @@ public class DeviceInfoEntity {
 
     public void setIsDeleted(Boolean isDeleted) {
         this.isDeleted = isDeleted;
+    }
+
+    public Integer getUseTime() {
+        return useTime;
+    }
+
+    public void setUseTime(Integer useTime) {
+        this.useTime = useTime;
+    }
+
+    public Integer getRepairTime() {
+        return repairTime;
+    }
+
+    public void setRepairTime(Integer repairTime) {
+        this.repairTime = repairTime;
+    }
+
+    public String getAcountNo() {
+        return acountNo;
+    }
+
+    public void setAcountNo(String acountNo) {
+        this.acountNo = acountNo;
+    }
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDeviceName() {
+        return deviceName;
+    }
+
+    public void setDeviceName(String deviceName) {
+        this.deviceName = deviceName;
+    }
+
+    public String getDeviceType() {
+        return deviceType;
+    }
+
+    public void setDeviceType(String deviceType) {
+        this.deviceType = deviceType;
     }
 }

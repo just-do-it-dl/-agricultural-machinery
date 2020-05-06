@@ -28,10 +28,10 @@ public class CommonService {
      * @return
      */
     public Result<UserEntity> login(LoginModel param) {
-        UserEntity user = userDao.selectByAccount(param.getAccountNo());
-        if (Objects.isNull(user)) {
-            return Result.getExceptionResult(CodeEnum.NULL_USER);
-        }
+//        UserEntity user = userDao.selectByAccount(param.getAccountNo());
+//        if (Objects.isNull(user)) {
+//            return Result.getExceptionResult(CodeEnum.NULL_USER);
+//        }
         return null;
     }
 

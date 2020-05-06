@@ -11,9 +11,11 @@
     <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
     <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
     <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+    <result column="delay_times" jdbcType="INTEGER" property="delayTimes" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, acount_no, name, password, tel, role_id, created_at, updated_at, is_deleted
+    id, acount_no, name, password, tel, role_id, created_at, updated_at, is_deleted, 
+    delay_times
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -28,12 +30,12 @@
   <insert id="insert" parameterType="com.jstdoit.agriculturalmachinery.entity.UserEntity">
     insert into user (id, acount_no, name, 
       password, tel, role_id, 
-      created_at, updated_at, is_deleted
-      )
+      created_at, updated_at, is_deleted, 
+      delay_times)
     values (#{id,jdbcType=INTEGER}, #{acountNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{roleId,jdbcType=BIT}, 
-      #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}
-      )
+      #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}, 
+      #{delayTimes,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.jstdoit.agriculturalmachinery.entity.UserEntity">
     insert into user
@@ -65,6 +67,9 @@
       <if test="isDeleted != null">
         is_deleted,
       </if>
+      <if test="delayTimes != null">
+        delay_times,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -93,6 +98,9 @@
       </if>
       <if test="isDeleted != null">
         #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="delayTimes != null">
+        #{delayTimes,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -123,6 +131,9 @@
       <if test="isDeleted != null">
         is_deleted = #{isDeleted,jdbcType=BIT},
       </if>
+      <if test="delayTimes != null">
+        delay_times = #{delayTimes,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -135,13 +146,28 @@
       role_id = #{roleId,jdbcType=BIT},
       created_at = #{createdAt,jdbcType=TIMESTAMP},
       updated_at = #{updatedAt,jdbcType=TIMESTAMP},
-      is_deleted = #{isDeleted,jdbcType=BIT}
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      delay_times = #{delayTimes,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
   <select id="selectByAccount" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from user
-    where account_no = #{accountNo,jdbcType=INTEGER}
+    where acount_no = #{acountNo}
+  </select>
+  <select id="selectDelay" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select delay_times as delayTime from user where acount_no = #{acountNo}
+  </select>
+  <update id="updateDelay" parameterType="java.lang.String">
+    UPDATE user set delay_times = delay_times + 1 where name = #{name}
+  </update>
+  <select id="selectCountAccount" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select count(*) from user where acount_no = #{acountNo}
+  </select>
+  <select id="selectCountName" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select count(*) from user where name = #{name}
   </select>
 </mapper>

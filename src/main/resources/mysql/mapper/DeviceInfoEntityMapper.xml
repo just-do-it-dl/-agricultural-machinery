@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.jstdoit.agriculturalmachinery.entity.DeviceInfoEntity">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="device_mapper_id" jdbcType="INTEGER" property="deviceMapperId" />
+    <result column="device_name" jdbcType="VARCHAR" property="deviceName" />
     <result column="purchas_date" jdbcType="TIMESTAMP" property="purchasDate" />
     <result column="purchas_price" jdbcType="INTEGER" property="purchasPrice" />
     <result column="addr" jdbcType="VARCHAR" property="addr" />
@@ -12,10 +13,12 @@
     <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
     <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
     <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+    <result column="use_time" jdbcType="INTEGER" property="useTime" />
+    <result column="repair_time" jdbcType="INTEGER" property="repairTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, device_mapper_id, purchas_date, purchas_price, addr, usage_status, repair_status, 
-    created_at, updated_at, is_deleted
+    id, device_mapper_id, device_name, purchas_date, purchas_price, addr, usage_status, 
+    repair_status, created_at, updated_at, is_deleted, use_time, repair_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -28,14 +31,16 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.jstdoit.agriculturalmachinery.entity.DeviceInfoEntity">
-    insert into device_info (id, device_mapper_id, purchas_date, 
-      purchas_price, addr, usage_status, 
-      repair_status, created_at, updated_at, 
-      is_deleted)
-    values (#{id,jdbcType=INTEGER}, #{deviceMapperId,jdbcType=INTEGER}, #{purchasDate,jdbcType=TIMESTAMP}, 
-      #{purchasPrice,jdbcType=INTEGER}, #{addr,jdbcType=VARCHAR}, #{usageStatus,jdbcType=INTEGER}, 
-      #{repairStatus,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, 
-      #{isDeleted,jdbcType=BIT})
+    insert into device_info (id, device_mapper_id, device_name, 
+      purchas_date, purchas_price, addr, 
+      usage_status, repair_status, created_at, 
+      updated_at, is_deleted, use_time, 
+      repair_time)
+    values (#{id,jdbcType=INTEGER}, #{deviceMapperId,jdbcType=INTEGER}, #{deviceName,jdbcType=VARCHAR}, 
+      #{purchasDate,jdbcType=TIMESTAMP}, #{purchasPrice,jdbcType=INTEGER}, #{addr,jdbcType=VARCHAR}, 
+      #{usageStatus,jdbcType=INTEGER}, #{repairStatus,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}, #{useTime,jdbcType=INTEGER}, 
+      #{repairTime,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.jstdoit.agriculturalmachinery.entity.DeviceInfoEntity">
     insert into device_info
@@ -45,6 +50,9 @@
       </if>
       <if test="deviceMapperId != null">
         device_mapper_id,
+      </if>
+      <if test="deviceName != null">
+        device_name,
       </if>
       <if test="purchasDate != null">
         purchas_date,
@@ -70,6 +78,12 @@
       <if test="isDeleted != null">
         is_deleted,
       </if>
+      <if test="useTime != null">
+        use_time,
+      </if>
+      <if test="repairTime != null">
+        repair_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -77,6 +91,9 @@
       </if>
       <if test="deviceMapperId != null">
         #{deviceMapperId,jdbcType=INTEGER},
+      </if>
+      <if test="deviceName != null">
+        #{deviceName,jdbcType=VARCHAR},
       </if>
       <if test="purchasDate != null">
         #{purchasDate,jdbcType=TIMESTAMP},
@@ -102,6 +119,12 @@
       <if test="isDeleted != null">
         #{isDeleted,jdbcType=BIT},
       </if>
+      <if test="useTime != null">
+        #{useTime,jdbcType=INTEGER},
+      </if>
+      <if test="repairTime != null">
+        #{repairTime,jdbcType=INTEGER},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.jstdoit.agriculturalmachinery.entity.DeviceInfoEntity">
@@ -109,6 +132,9 @@
     <set>
       <if test="deviceMapperId != null">
         device_mapper_id = #{deviceMapperId,jdbcType=INTEGER},
+      </if>
+      <if test="deviceName != null">
+        device_name = #{deviceName,jdbcType=VARCHAR},
       </if>
       <if test="purchasDate != null">
         purchas_date = #{purchasDate,jdbcType=TIMESTAMP},
@@ -134,12 +160,19 @@
       <if test="isDeleted != null">
         is_deleted = #{isDeleted,jdbcType=BIT},
       </if>
+      <if test="useTime != null">
+        use_time = #{useTime,jdbcType=INTEGER},
+      </if>
+      <if test="repairTime != null">
+        repair_time = #{repairTime,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.jstdoit.agriculturalmachinery.entity.DeviceInfoEntity">
     update device_info
     set device_mapper_id = #{deviceMapperId,jdbcType=INTEGER},
+      device_name = #{deviceName,jdbcType=VARCHAR},
       purchas_date = #{purchasDate,jdbcType=TIMESTAMP},
       purchas_price = #{purchasPrice,jdbcType=INTEGER},
       addr = #{addr,jdbcType=VARCHAR},
@@ -147,7 +180,51 @@
       repair_status = #{repairStatus,jdbcType=INTEGER},
       created_at = #{createdAt,jdbcType=TIMESTAMP},
       updated_at = #{updatedAt,jdbcType=TIMESTAMP},
-      is_deleted = #{isDeleted,jdbcType=BIT}
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      use_time = #{useTime,jdbcType=INTEGER},
+      repair_time = #{repairTime,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectRole" resultType="java.lang.String">
+    select
+    role_id
+    from user
+    where acount_no = #{acount_no,jdbcType=VARCHAR}
+  </select>
+  <select id="selectList" parameterType="com.jstdoit.agriculturalmachinery.entity.QueryListReqBean" resultType="com.jstdoit.agriculturalmachinery.entity.QueryListBean">
+    select
+    b.device_name as deviceName,b.id as id,b.repair_status as repairStatus,b.usage_status as usageStatus, a.name as name
+    from device_info b left join apply_info a on b.id = a.device_info_id where 1=1
+    <if test="deviceName != ''">
+      and b.device_name = #{deviceName,jdbcType=VARCHAR}
+    </if>
+    <if test="id != ''">
+      and b.id = #{id}
+    </if>
+    <if test="repairStatus != ''">
+      and b.repair_status = #{repairStatus}
+    </if>
+    <if test="usageStatus != ''">
+      and b.usage_status = #{usageStatus}
+    </if>
+    limit #{pageIndex},#{pageNum}
+  </select>
+  <select id="selectDetail" parameterType="com.jstdoit.agriculturalmachinery.entity.QueryListReqBean" resultType="com.jstdoit.agriculturalmachinery.entity.DetailBean">
+    select b.device_name as deviceName,b.id as id,b.usage_status as usageStatus,b.repair_status as repairStatus,c.name as name,
+d.name as repairName,b.purchas_price as purchasPrice,b.purchas_date as purchasDate,b.addr as addr,b.use_time as useTime,
+b.repair_time as repairTime,d.repair_desc as repairDesc,d.repair_cause as repairCause from device_info b left join apply_info c on c.device_info_id = b.id left join repair_info d on d.device_info_id = b.id
+where b.id = #{id}
+  </select>
+  <update id="updateUseTime">
+    UPDATE device_info set use_time = use_time + 1 where id = #{id}
+  </update>
+  <update id="updateState">
+    update device_info set usage_status = 1 where id = #{deviceInfoId}
+  </update>
+  <update id="updateRepairState">
+    update device_info set repair_status = 3 where id = #{deviceInfoId}
+  </update>
+  <update id="updateRepairState1">
+    update device_info set repair_status = 1 where id = #{deviceInfoId}
   </update>
 </mapper>

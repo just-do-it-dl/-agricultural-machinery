@@ -13,13 +13,15 @@ public class UserEntity {
 
     private String tel;
 
-    private Boolean roleId;
+    private String roleId;
 
     private Date createdAt;
 
     private Date updatedAt;
 
     private Boolean isDeleted;
+
+    private Integer delayTimes;
 
     public Integer getId() {
         return id;
@@ -61,11 +63,11 @@ public class UserEntity {
         this.tel = tel;
     }
 
-    public Boolean getRoleId() {
+    public String getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(Boolean roleId) {
+    public void setRoleId(String roleId) {
         this.roleId = roleId;
     }
 
@@ -91,5 +93,13 @@ public class UserEntity {
 
     public void setIsDeleted(Boolean isDeleted) {
         this.isDeleted = isDeleted;
+    }
+
+    public Integer getDelayTimes() {
+        return delayTimes;
+    }
+
+    public void setDelayTimes(Integer delayTimes) {
+        this.delayTimes = delayTimes;
     }
 }

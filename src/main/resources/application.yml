@@ -1,9 +1,14 @@
 server:
-  port: 8080
+  port: 8081
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/agricultural_machinery
+    url: jdbc:mysql://123.57.138.109:3306/agricultural_machinery
     name: root
-    data-password: cyf1996
+    data-password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
-    type: com.alibaba.druid.pool.DruidDataSource
+mybatis:
+  type-aliases-package: com.jstdoit.agriculturalmachinery.entity
+  mapper-locations: classpath:mysql/mapper/*.xml
+logging:
+  level:
+    com.jstdoit.agriculturalmachinery.dao: debug
